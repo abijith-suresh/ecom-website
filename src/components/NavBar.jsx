@@ -28,7 +28,7 @@ const NavBar = ({ cartItems, onDelete, onAddProduct }) => {
               Add Product
             </button>
             <a className="navbar-brand mx-auto" href="#home">
-              My E-Commerce Site
+              E-Commerce Site
             </a>
             <button className="btn btn-outline-primary" onClick={toggleCart}>
               Cart
