@@ -1,7 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const Cart = ({ isOpen, onClose, cartItems }) => {
+const Cart = ({ isOpen, onClose, cartItems, onDelete }) => {
   return (
     <div
       className={`modal fade ${isOpen ? "show" : ""}`}
@@ -20,8 +20,19 @@ const Cart = ({ isOpen, onClose, cartItems }) => {
             ) : (
               <ul className="list-group">
                 {cartItems.map((item, index) => (
-                  <li key={index} className="list-group-item">
-                    {item.name} - {item.price}
+                  <li
+                    key={index}
+                    className="list-group-item d-flex justify-content-between align-items-center"
+                  >
+                    <span>
+                      {item.name} - {item.price}
+                    </span>
+                    <button
+                      className="btn btn-danger btn-sm"
+                      onClick={() => onDelete(index)}
+                    >
+                      Delete
+                    </button>
                   </li>
                 ))}
               </ul>

@@ -1,19 +1,25 @@
-import HomePage from "./components/HomePage";
+import React, { useState } from "react";
 import NavBar from "./components/NavBar";
-import products from "./data/Products";
-import { useState } from "react";
+import HomePage from "./components/HomePage";
+import products from "./data/products";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
 
   const addToCart = (product) => {
     setCartItems((prevItems) => [...prevItems, product]);
-    console.log(`${product.name} added to cart`);
+  };
+
+  const handleDelete = (index) => {
+    const updatedCartItems = cartItems.filter((_, i) => i !== index);
+    setCartItems(updatedCartItems);
   };
 
   return (
     <>
-      <NavBar cartItems={cartItems} />
+      <NavBar cartItems={cartItems} onDelete={handleDelete} />
       <HomePage products={products} addToCart={addToCart} />
     </>
   );

@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import Cart from "./Cart";
 
-const NavBar = ({ cartItems }) => {
+const NavBar = ({ cartItems, onDelete }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const toggleCart = () => {
@@ -24,7 +24,12 @@ const NavBar = ({ cartItems }) => {
           </div>
         </div>
       </nav>
-      <Cart isOpen={isCartOpen} onClose={toggleCart} cartItems={cartItems} />
+      <Cart
+        isOpen={isCartOpen}
+        onClose={toggleCart}
+        cartItems={cartItems}
+        onDelete={onDelete}
+      />
     </>
   );
 };
