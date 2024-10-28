@@ -7,6 +7,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
+  const [productList, setProductList] = useState(products); // Initialize with existing products
 
   const addToCart = (product) => {
     setCartItems((prevItems) => [...prevItems, product]);
@@ -17,10 +18,18 @@ function App() {
     setCartItems(updatedCartItems);
   };
 
+  const handleAddProduct = (newProduct) => {
+    setProductList((prevList) => [...prevList, newProduct]);
+  };
+
   return (
     <>
-      <NavBar cartItems={cartItems} onDelete={handleDelete} />
-      <HomePage products={products} addToCart={addToCart} />
+      <NavBar
+        cartItems={cartItems}
+        onDelete={handleDelete}
+        onAddProduct={handleAddProduct}
+      />
+      <HomePage products={productList} addToCart={addToCart} />
     </>
   );
 }
