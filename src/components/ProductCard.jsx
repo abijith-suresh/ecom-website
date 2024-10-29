@@ -15,19 +15,21 @@ const ProductCard = ({ product, addToCart, addToWishlist, isInWishlist }) => {
           <h5 className="card-title">{product.name}</h5>
           <p className="card-text">{product.description}</p>
           <h6 className="card-subtitle mb-2 text-muted">{product.price}</h6>
-          <button
-            className="btn btn-primary"
-            onClick={() => addToCart(product)}
-          >
-            Add to Cart
-          </button>
-          <button
-            className="btn btn-warning"
-            onClick={() => addToWishlist(product)}
-            disabled={isInWishlist}
-          >
-            {isInWishlist ? "In Wishlist" : "Add to Wishlist"}
-          </button>
+          <div className="d-flex justify-content-between">
+            <button
+              className="btn btn-primary"
+              onClick={() => addToCart(product)}
+            >
+              Add to Cart
+            </button>
+            <button
+              className="btn btn-warning"
+              onClick={() => addToWishlist(product)}
+              disabled={isInWishlist}
+            >
+              {isInWishlist ? "In Wishlist" : "Add to Wishlist"}
+            </button>
+          </div>
         </div>
       </div>
     </div>

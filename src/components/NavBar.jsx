@@ -3,7 +3,13 @@ import Cart from "./Cart";
 import ProductForm from "./ProductForm";
 import Wishlist from "./WishList";
 
-const NavBar = ({ cartItems, onDelete, onAddProduct, wishlistItems, onWishlistDelete }) => {
+const NavBar = ({
+  cartItems,
+  onDelete,
+  onAddProduct,
+  wishlistItems,
+  onWishlistDelete,
+}) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
@@ -34,7 +40,10 @@ const NavBar = ({ cartItems, onDelete, onAddProduct, wishlistItems, onWishlistDe
             <a className="navbar-brand mx-auto" href="#home">
               E-Commerce Site
             </a>
-            <button className="btn btn-outline-primary" onClick={toggleCart}>
+            <button
+              className="btn btn-outline-primary me-2"
+              onClick={toggleCart}
+            >
               Cart
             </button>
             <button className="btn btn-outline-info" onClick={toggleWishlist}>
