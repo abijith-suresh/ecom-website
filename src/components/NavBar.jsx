@@ -3,7 +3,7 @@ import Cart from "./Cart";
 import ProductForm from "./ProductForm";
 import Wishlist from "./WishList";
 
-const NavBar = ({ cartItems, onDelete, onAddProduct, wishlistItems }) => {
+const NavBar = ({ cartItems, onDelete, onAddProduct, wishlistItems, onWishlistDelete }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
@@ -58,6 +58,7 @@ const NavBar = ({ cartItems, onDelete, onAddProduct, wishlistItems }) => {
         isOpen={isWishlistOpen}
         onClose={toggleWishlist}
         wishlistItems={wishlistItems}
+        onDelete={onWishlistDelete}
       />
     </>
   );

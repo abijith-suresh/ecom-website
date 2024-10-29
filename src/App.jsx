@@ -23,7 +23,7 @@ function App() {
 
     setTimeout(() => {
       setIsCartAlertOpen(false);
-    }, 1500);
+    }, 750);
   };
 
   const addToWishlist = (product) => {
@@ -36,8 +36,13 @@ function App() {
 
       setTimeout(() => {
         setIsWishListAlertOpen(false);
-      }, 1500);
+      }, 750);
     }
+  };
+
+  const handleWishlistDelete = (index) => {
+    const updatedWishlistItems = wishlistItems.filter((_, i) => i !== index);
+    setWishlistItems(updatedWishlistItems);
   };
 
   const handleDelete = (index) => {
@@ -56,6 +61,7 @@ function App() {
         onDelete={handleDelete}
         onAddProduct={handleAddProduct}
         wishlistItems={wishlistItems}
+        onWishlistDelete={handleWishlistDelete}
       />
       <HomePage
         products={productList}
