@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import NavBar from "./components/NavBar";
 import HomePage from "./components/HomePage";
 import CartAlert from "./components/CartAlert";
+import WishListAlert from "./components/WishListAlert";
 import products from "./data/products";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -9,17 +10,34 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const [productList, setProductList] = useState(products);
-  const [isAlertOpen, setIsAlertOpen] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
+  const [isCartAlertOpen, setIsCartAlertOpen] = useState(false);
+  const [isWishListAlertOpen, setIsWishListAlertOpen] = useState(false);
+  const [cartAlertMessage, setCartAlertMessage] = useState("");
+  const [wishListAlertMessage, setWishListAlertMessage] = useState("");
+  const [wishlistItems, setWishlistItems] = useState([]);
 
   const addToCart = (product) => {
     setCartItems((prevItems) => [...prevItems, product]);
-    setAlertMessage(`${product.name} has been added to your cart!`);
-    setIsAlertOpen(true);
+    setCartAlertMessage(`${product.name} has been added to your cart!`);
+    setIsCartAlertOpen(true);
 
     setTimeout(() => {
-      setIsAlertOpen(false);
+      setIsCartAlertOpen(false);
     }, 1500);
+  };
+
+  const addToWishlist = (product) => {
+    if (!wishlistItems.some((item) => item.id === product.id)) {
+      setWishlistItems((prevItems) => [...prevItems, product]);
+      setWishListAlertMessage(
+        `${product.name} has been added to your wishlist!`
+      );
+      setIsWishListAlertOpen(true);
+
+      setTimeout(() => {
+        setIsWishListAlertOpen(false);
+      }, 1500);
+    }
   };
 
   const handleDelete = (index) => {
@@ -37,12 +55,23 @@ function App() {
         cartItems={cartItems}
         onDelete={handleDelete}
         onAddProduct={handleAddProduct}
+        wishlistItems={wishlistItems}
       />
-      <HomePage products={productList} addToCart={addToCart} />
+      <HomePage
+        products={productList}
+        addToCart={addToCart}
+        addToWishlist={addToWishlist}
+        wishlistItems={wishlistItems}
+      />
       <CartAlert
-        message={alertMessage}
-        isOpen={isAlertOpen}
-        onClose={() => setIsAlertOpen(false)}
+        message={cartAlertMessage}
+        isOpen={isCartAlertOpen}
+        onClose={() => setIsCartAlertOpen(false)}
+      />
+      <WishListAlert
+        message={wishListAlertMessage}
+        isOpen={isWishListAlertOpen}
+        onClose={() => setIsWishListAlertOpen(false)}
       />
     </>
   );

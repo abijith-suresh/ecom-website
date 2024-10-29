@@ -11,7 +11,7 @@ const ProductForm = ({ isOpen, onClose, onAddProduct }) => {
     e.preventDefault();
 
     const newProduct = {
-      id: Date.now(), 
+      id: Date.now(),
       name,
       description,
       price,
@@ -24,7 +24,7 @@ const ProductForm = ({ isOpen, onClose, onAddProduct }) => {
     setDescription("");
     setPrice("");
     setImage("");
-    onClose(); 
+    onClose();
   };
 
   return (

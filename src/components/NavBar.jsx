@@ -1,12 +1,12 @@
-import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import Cart from "./Cart";
 import ProductForm from "./ProductForm";
+import Wishlist from "./WishList";
 
-const NavBar = ({ cartItems, onDelete, onAddProduct }) => {
+const NavBar = ({ cartItems, onDelete, onAddProduct, wishlistItems }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [isWishlistOpen, setIsWishlistOpen] = useState(false);
 
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
@@ -14,6 +14,10 @@ const NavBar = ({ cartItems, onDelete, onAddProduct }) => {
 
   const toggleProductForm = () => {
     setIsFormOpen(!isFormOpen);
+  };
+
+  const toggleWishlist = () => {
+    setIsWishlistOpen(!isWishlistOpen);
   };
 
   return (
@@ -33,6 +37,9 @@ const NavBar = ({ cartItems, onDelete, onAddProduct }) => {
             <button className="btn btn-outline-primary" onClick={toggleCart}>
               Cart
             </button>
+            <button className="btn btn-outline-info" onClick={toggleWishlist}>
+              Wishlist
+            </button>
           </div>
         </div>
       </nav>
@@ -46,6 +53,11 @@ const NavBar = ({ cartItems, onDelete, onAddProduct }) => {
         isOpen={isFormOpen}
         onClose={toggleProductForm}
         onAddProduct={onAddProduct}
+      />
+      <Wishlist
+        isOpen={isWishlistOpen}
+        onClose={toggleWishlist}
+        wishlistItems={wishlistItems}
       />
     </>
   );

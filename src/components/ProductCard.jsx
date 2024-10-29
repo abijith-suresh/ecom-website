@@ -1,7 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const ProductCard = ({ product, addToCart }) => {
+const ProductCard = ({ product, addToCart, addToWishlist, isInWishlist }) => {
   return (
     <div className="col-md-4 mb-4">
       <div className="card">
@@ -20,6 +20,13 @@ const ProductCard = ({ product, addToCart }) => {
             onClick={() => addToCart(product)}
           >
             Add to Cart
+          </button>
+          <button
+            className="btn btn-warning"
+            onClick={() => addToWishlist(product)}
+            disabled={isInWishlist}
+          >
+            {isInWishlist ? "In Wishlist" : "Add to Wishlist"}
           </button>
         </div>
       </div>

@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import ProductCard from "./ProductCard";
 
-const HomePage = ({ products, addToCart }) => {
+const HomePage = ({ products, addToCart, addToWishlist, wishlistItems }) => {
   return (
     <div className="container">
       <div className="row">
@@ -11,6 +11,8 @@ const HomePage = ({ products, addToCart }) => {
             key={product.id}
             product={product}
             addToCart={addToCart}
+            addToWishlist={addToWishlist} 
+            isInWishlist={wishlistItems.some(item => item.id === product.id)} 
           />
         ))}
       </div>
